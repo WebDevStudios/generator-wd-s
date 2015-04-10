@@ -1,0 +1,32 @@
+{
+  "name": "generator-s",
+  "version": "1.0.0",
+  "description": "A generator for WebDevStudios' _s, our primary internal starter theme. ",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "bradp/generator-s",
+  "author": {
+    "name": "Brad Parbs",
+    "email": "brad@bradparbs.com",
+    "url": "https://github.com/bradp"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator",
+    "wordpress",
+    "webdevstudios"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^0.19.0",
+    "chalk": "^1.0.0",
+    "yosay": "^1.0.2"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}

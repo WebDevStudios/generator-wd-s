@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# Used to build out our src/ folder for the generator. Should be run anytime commits are pushed to the main <%= themename %> repo.
+if [ -d "src" ]; then
+	#Remove our current src/ folder if it exists.
+	rm -rf "src"
+fi
+
+# Clone down a new copy of <%= themename %>
+git clone --recursive git@github.com:WebDevStudios/_s.git src
+
+if [ -d "src/.git" ]; then 
+	rm -rf "src/.git"
+fi
+
+if [ -f "src/.gitignore" ]; then 
+	rm "src/.gitignore"
+fi
+
+#Explicitly set our local so that sed doesn't thrown an error.
+LC_ALL=C
+
+#Do the <%= themename %> replacements to our templating tags.
+find . -type f -exec sed -i '' "s/'<%= shortname %>'/'<%= shortname %>'/g" {} \;
+find . -type f -exec sed -i '' 's/<%= shortname %>_/<%= shortname %>_/g' {} \;
+find . -type f -exec sed -i '' 's/bar/bar/g' {} \;
+find . -type f -exec sed -i '' 's/ <%= themename %>/ <%= themename %>/g' {} \;
+find . -type f -exec sed -i '' 's/<%= shortname %>-/<%= shortname %>-/g' {} \;
