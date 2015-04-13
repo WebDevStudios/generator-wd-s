@@ -1,6 +1,6 @@
 {
   "name": "generator-s",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A generator for WebDevStudios' _s, our primary internal starter theme. ",
   "license": "MIT",
   "main": "app/index.js",
