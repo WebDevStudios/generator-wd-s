@@ -133,7 +133,7 @@ module.exports = yeoman.generators.Base.extend({
     this.destinationRoot( this.options.dir );
 
     this.fs.copyTpl(
-      this.templatePath('src/*'),
+      this.templatePath('src/**/*'),
       this.destinationPath('/'),
       this
     );
