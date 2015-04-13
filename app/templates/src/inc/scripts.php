@@ -3,7 +3,7 @@
 /**
  * Register Google font.
  */
-function <%= shortname %>_font_url() {
+function <%= prefixname %>_font_url() {
 
 	$fonts_url = '';
 
@@ -41,7 +41,7 @@ function <%= shortname %>_font_url() {
 /**
  * Enqueue scripts and styles.
  */
-function <%= shortname %>_scripts() {
+function <%= prefixname %>_scripts() {
 	/**
 	 * If WP is in script debug, or we pass ?script_debug in a URL - set debug to true.
 	 */
@@ -69,7 +69,7 @@ function <%= shortname %>_scripts() {
 	wp_register_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/' . $fa_version . '/css/font-awesome.min.css', array(), $fa_version );
 
 	wp_enqueue_style( 'font-awesome' );
-	wp_enqueue_style( '<%= shortname %>-google-font', <%= shortname %>_font_url(), array(), null );
+	wp_enqueue_style( '<%= shortname %>-google-font', <%= prefixname %>_font_url(), array(), null );
 	wp_enqueue_style( '<%= shortname %>-style', get_stylesheet_directory_uri() . '/style' . $suffix . '.css', array(), $version );
 
 	wp_enqueue_script( '<%= shortname %>-project', get_template_directory_uri() . '/js/project' . $suffix . '.js', array( 'jquery' ), $version, true );
@@ -78,4 +78,4 @@ function <%= shortname %>_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', '<%= shortname %>_scripts' );
+add_action( 'wp_enqueue_scripts', '<%= prefixname %>_scripts' );

@@ -9,11 +9,19 @@ fi
 # Clone down a new copy of <%= themename %>
 git clone --recursive git@github.com:WebDevStudios/_s.git src
 
-if [ -d "src/.git" ]; then 
+if [ -d "src/.git" ]; then
 	rm -rf "src/.git"
 fi
 
-if [ -f "src/.gitignore" ]; then 
+if [ -d "src/bower_components" ]; then
+	rm -rf "src/bower_components"
+fi
+
+if [ -d "src/sassdoc" ]; then
+	rm -rf "src/sassdoc"
+fi
+
+if [ -f "src/.gitignore" ]; then
 	rm "src/.gitignore"
 fi
 
@@ -21,8 +29,21 @@ fi
 LC_ALL=C
 
 #Do the <%= themename %> replacements to our templating tags.
-find . -type f -exec sed -i '' "s/'<%= shortname %>'/'<%= shortname %>'/g" {} \;
-find . -type f -exec sed -i '' 's/<%= shortname %>_/<%= shortname %>_/g' {} \;
-find . -type f -exec sed -i '' 's/bar/bar/g' {} \;
-find . -type f -exec sed -i '' 's/ <%= themename %>/ <%= themename %>/g' {} \;
-find . -type f -exec sed -i '' 's/<%= shortname %>-/<%= shortname %>-/g' {} \;
+find src/ -type f -not -name "*.png" -exec sed -i '' "s/'_s'/'<%= shortname %>'/g" {} \;
+find src/ -type f -not -name "*.png" -exec sed -i '' 's/_s_/<%= prefixname %>_/g' {} \;
+find src/ -type f -not -name "*.png" -exec sed -i '' 's/ _s/ <%= themename %>/g' {} \;
+find src/ -type f -not -name "*.png" -exec sed -i '' 's/_s-/<%= shortname %>-/g' {} \;
+find src/ -type f -not -name "*.png" -exec sed -i '' 's/Text Domain: .*$/Text Domain: <%= shortname %>/g' {} \;
+
+find src/ -type f -not -name "*.png" -exec sed -i '' 's/"_s"/"<%= shortname %>"/g' {} \;
+
+find src/ -type f -not -name "*.png" -exec sed -i '' 's/"description": ".*"/"description": "<%= descrip %>"/g' {} \;
+find src/ -type f -not -name "*.png" -exec sed -i '' 's/Description: .*$/Description: <%= descrip %>/g' {} \;
+
+find src/ -type f -not -name "*.png" -exec sed -i '' 's/Theme URI: .*$/Theme URI: <%= themeuri %>/g' {} \;
+find src/ -type f -not -name "*.png" -exec sed -i '' 's/"homepage": ".*"/"homepage": "<%= themeuri %>"/g' {} \;
+
+find src/ -type f -not -name "*.png" -exec sed -i '' 's/Author: .*$/Author: <%= author %>/g' {} \;
+find src/ -type f -not -name "*.png" -exec sed -i '' 's/"author": ".*"/"author": "<%= author %>"/g' {} \;
+
+find src/ -type f -not -name "*.png" -exec sed -i '' 's/Author URI: .*$/Author URI: <%= authoruri %>/g' {} \;

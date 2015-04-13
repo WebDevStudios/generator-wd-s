@@ -64,11 +64,11 @@ function the_post_navigation() {
 }
 endif;
 
-if ( ! function_exists( '<%= shortname %>_posted_on' ) ) :
+if ( ! function_exists( '<%= prefixname %>_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  */
-function <%= shortname %>_posted_on() {
+function <%= prefixname %>_posted_on() {
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
@@ -96,16 +96,16 @@ function <%= shortname %>_posted_on() {
 }
 endif;
 
-if ( ! function_exists( '<%= shortname %>_entry_footer' ) ) :
+if ( ! function_exists( '<%= prefixname %>_entry_footer' ) ) :
 /**
  * Prints HTML with meta information for the categories, tags and comments.
  */
-function <%= shortname %>_entry_footer() {
+function <%= prefixname %>_entry_footer() {
 	// Hide category and tag text for pages.
 	if ( 'post' == get_post_type() ) {
 		/* translators: used between list items, there is a space after the comma */
 		$categories_list = get_the_category_list( __( ', ', '<%= shortname %>' ) );
-		if ( $categories_list && <%= shortname %>_categorized_blog() ) {
+		if ( $categories_list && <%= prefixname %>_categorized_blog() ) {
 			printf( '<span class="cat-links">' . __( 'Posted in %1$s', '<%= shortname %>' ) . '</span>', $categories_list );
 		}
 
@@ -143,7 +143,7 @@ function the_archive_title( $before = '', $after = '' ) {
 	} elseif ( is_tag() ) {
 		$title = sprintf( __( 'Tag: %s', '<%= shortname %>' ), single_tag_title( '', false ) );
 	} elseif ( is_author() ) {
-		$title = sprintf( __( 'Author: %s', '<%= shortname %>' ), '<span class="vcard">' . get_the_author() . '</span>' );
+		$title = sprintf( __( 'Author: <%= author %>
 	} elseif ( is_year() ) {
 		$title = sprintf( __( 'Year: %s', '<%= shortname %>' ), get_the_date( _x( 'Y', 'yearly archives date format', '<%= shortname %>' ) ) );
 	} elseif ( is_month() ) {
@@ -223,8 +223,8 @@ endif;
  *
  * @return bool
  */
-function <%= shortname %>_categorized_blog() {
-	if ( false === ( $all_the_cool_cats = get_transient( '<%= shortname %>_categories' ) ) ) {
+function <%= prefixname %>_categorized_blog() {
+	if ( false === ( $all_the_cool_cats = get_transient( '<%= prefixname %>_categories' ) ) ) {
 		// Create an array of all the categories that are attached to posts.
 		$all_the_cool_cats = get_categories( array(
 			'fields'     => 'ids',
@@ -237,27 +237,27 @@ function <%= shortname %>_categorized_blog() {
 		// Count the number of categories that are attached to the posts.
 		$all_the_cool_cats = count( $all_the_cool_cats );
 
-		set_transient( '<%= shortname %>_categories', $all_the_cool_cats );
+		set_transient( '<%= prefixname %>_categories', $all_the_cool_cats );
 	}
 
 	if ( $all_the_cool_cats > 1 ) {
-		// This blog has more than 1 category so <%= shortname %>_categorized_blog should return true.
+		// This blog has more than 1 category so <%= prefixname %>_categorized_blog should return true.
 		return true;
 	} else {
-		// This blog has only 1 category so <%= shortname %>_categorized_blog should return false.
+		// This blog has only 1 category so <%= prefixname %>_categorized_blog should return false.
 		return false;
 	}
 }
 
 /**
- * Flush out the transients used in <%= shortname %>_categorized_blog.
+ * Flush out the transients used in <%= prefixname %>_categorized_blog.
  */
-function <%= shortname %>_category_transient_flusher() {
+function <%= prefixname %>_category_transient_flusher() {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 		return;
 	}
 	// Like, beat it. Dig?
-	delete_transient( '<%= shortname %>_categories' );
+	delete_transient( '<%= prefixname %>_categories' );
 }
-add_action( 'edit_category', '<%= shortname %>_category_transient_flusher' );
-add_action( 'save_post',     '<%= shortname %>_category_transient_flusher' );
+add_action( 'edit_category', '<%= prefixname %>_category_transient_flusher' );
+add_action( 'save_post',     '<%= prefixname %>_category_transient_flusher' );

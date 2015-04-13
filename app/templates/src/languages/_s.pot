@@ -186,7 +186,7 @@ msgid "Tag: %s"
 msgstr ""
 
 #: inc/template-tags.php:147
-msgid "Author: %s"
+msgid "Author: <%= author %>
 msgstr ""
 
 #: inc/template-tags.php:149
@@ -279,7 +279,7 @@ msgstr ""
 msgid "Search Results for: %s"
 msgstr ""
 #. Theme Name of the plugin/theme
-msgid "_s"
+msgid "<%= shortname %>"
 msgstr ""
 
 #. Theme URI of the plugin/theme

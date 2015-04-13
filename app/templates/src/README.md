@@ -1,11 +1,11 @@
-_s
+WebDevStudio's <%= themename %>
 ===
 
 [WebDevStudios](http://webdevstudios.com) fork of Automattic's [_s](https://github.com/Automattic/_s). Used primarily as our internal starter theme. Your pull requests are welcome!
 
 # Pre-Installation
 
-Basic knowledge of the command line and the following dependencies are required to use wd_s:
+Basic knowledge of the command line and the following dependencies are required to use <%= themename %>:
 
 - Node ([http://nodejs.org/](http://nodejs.org/))
 - Ruby ([http://rubyinstaller.org/](http://rubyinstaller.org/))
@@ -14,6 +14,23 @@ Basic knowledge of the command line and the following dependencies are required 
 - Sass ([http://sass-lang.com/](http://sass-lang.com/install)) - `gem install sass`
 
 # Installation
+
+## Automatic Installation
+
+The easiest way to get started, is by using the [Yeoman](http://yeoman.io/) generator via the command line. It will ask you a series of questions and build the starter theme for you.
+
+##### 1) Create a new theme folder in `/wp-content/themes`
+
+##### 2) Navigate to your new theme folder
+`cd /your-project/wordpress/wp-content/themes/your-new-theme`
+
+##### 3) Install the <%= themename %> generator and build a theme
+`npm install -g generator-s && yo s`
+
+That's it! You're ready to start using [Grunt](https://github.com/WebDevStudios/_s/blob/master/README.md#using-grunt)!
+
+
+## Manual Installation
 
 ##### 1) Navigate to the /themes folder of your project
 `cd /your-project/wordpress/wp-content/themes`
@@ -27,8 +44,8 @@ Basic knowledge of the command line and the following dependencies are required 
 You'll need to change all instances of the names: `_s` to your project name.
 
 - Search for: `'<%= shortname %>'` and replace with: `'project-name'` (inside single quotations) to capture the text domain
-- Search for: `<%= shortname %>_` and replace with: `project-name_` to capture all the function names
-- Search for: `bar` and replace with: `Text Domain: project-name` in style.css
+- Search for: `<%= prefixname %>_` and replace with: `project-name_` to capture all the function names
+- Search for: `Text Domain: <%= shortname %>
 - Search for (and include the leading space): <code>&nbsp;_s</code> and replace with: <code>&nbsp;Project Name</code>(with a space before it) to capture DocBlocks
 - Search for: `<%= shortname %>-` and replace with: `project-name-` to capture prefixed handles
 
@@ -37,10 +54,13 @@ You'll need to change all instances of the names: `_s` to your project name.
 
 That's it! Now you can begin using Grunt.
 
-## Using Grunt
+# Usage
+After you've installed <%= themename %>, and run `npm install && bower install` from the command line you can start using grunt.
+
+## Grunt
 
 ##### 1) Navigate to your new theme
-`cd /your-project/wordpress/wp-content/themes/_s`
+`cd /your-project/wordpress/wp-content/themes/your-new-theme`
 
 ##### 2) Grunt tasks available:
 

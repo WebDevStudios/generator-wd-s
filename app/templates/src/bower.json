@@ -1,6 +1,6 @@
 {
-  "name": "wd_s",
-  "description": "A project boilerplate for WebDevStudios.",
+  "name": "<%= shortname %>",
+  "description": "<%= descrip %>",
   "version": "1.0.0",
   "keywords": [
     "css",
@@ -13,7 +13,7 @@
     "web",
     "wordpress"
   ],
-  "homepage": "http://webdevstudios.com",
+  "homepage": "<%= themeuri %>",
   "main": [
     "sass/style.scss",
     "style.css"

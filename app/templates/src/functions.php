@@ -12,7 +12,7 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 640; /* pixels */
 }
 
-if ( ! function_exists( '<%= shortname %>_setup' ) ) :
+if ( ! function_exists( '<%= prefixname %>_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -20,7 +20,7 @@ if ( ! function_exists( '<%= shortname %>_setup' ) ) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function <%= shortname %>_setup() {
+function <%= prefixname %>_setup() {
 
 	/*
 	 * Make theme available for translation.
@@ -71,23 +71,23 @@ function <%= shortname %>_setup() {
 	) );
 
 	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( '<%= shortname %>_custom_background_args', array(
+	add_theme_support( 'custom-background', apply_filters( '<%= prefixname %>_custom_background_args', array(
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	) ) );
 
 	// Add styles to the post editor
-	add_editor_style( array( 'editor-style.css', <%= shortname %>_font_url() ) );
+	add_editor_style( array( 'editor-style.css', <%= prefixname %>_font_url() ) );
 }
-endif; // <%= shortname %>_setup
-add_action( 'after_setup_theme', '<%= shortname %>_setup' );
+endif; // <%= prefixname %>_setup
+add_action( 'after_setup_theme', '<%= prefixname %>_setup' );
 
 /**
  * Register widget area.
  *
  * @link http://codex.wordpress.org/Function_Reference/register_sidebar
  */
-function <%= shortname %>_widgets_init() {
+function <%= prefixname %>_widgets_init() {
 
 	// Define sidebars
 	$sidebars = array(
@@ -110,7 +110,7 @@ function <%= shortname %>_widgets_init() {
 	}
 
 }
-add_action( 'widgets_init', '<%= shortname %>_widgets_init' );
+add_action( 'widgets_init', '<%= prefixname %>_widgets_init' );
 
 /**
  * Custom template tags for this theme.

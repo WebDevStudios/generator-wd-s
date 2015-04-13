@@ -13,7 +13,7 @@
  * @global array $themecolors
  * @return void
  */
-function <%= shortname %>_wpcom_setup() {
+function <%= prefixname %>_wpcom_setup() {
 	global $themecolors;
 
 	// Set theme colors for third party services.
@@ -27,4 +27,4 @@ function <%= shortname %>_wpcom_setup() {
 		);
 	}
 }
-add_action( 'after_setup_theme', '<%= shortname %>_wpcom_setup' );
+add_action( 'after_setup_theme', '<%= prefixname %>_wpcom_setup' );
