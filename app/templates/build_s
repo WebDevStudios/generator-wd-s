@@ -41,7 +41,9 @@ for f in $( find "$yo_dir"/src -type f -not -name "*.png" ); do
 	sed -i '' 's/Description: .*$/Description: <%= descrip %>/g' "$f"; > /dev/null 2>&1
 	sed -i '' 's/Theme URI: .*$/Theme URI: <%= themeuri %>/g' "$f"; > /dev/null 2>&1
 	sed -i '' 's/"homepage": ".*"/"homepage": "<%= themeuri %>"/g' "$f"; > /dev/null 2>&1
-	sed -i '' 's/Author: .*$/Author: <%= author %>/g' "$f"; > /dev/null 2>&1
+	sed -i '' 's/Author: Automattic/Author: <%= author %>/g' "$f"; > /dev/null 2>&1
 	sed -i '' 's/"author": ".*"/"author": "<%= author %>"/g' "$f"; > /dev/null 2>&1
 	sed -i '' 's/Author URI: .*$/Author URI: <%= authoruri %>/g' "$f"; > /dev/null 2>&1
 done
+
+exit
