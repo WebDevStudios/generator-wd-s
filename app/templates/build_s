@@ -1,49 +1,47 @@
 #!/usr/bin/env bash
+yo_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+cd "$yo_dir"
 
-# Used to build out our src/ folder for the generator. Should be run anytime commits are pushed to the main <%= themename %> repo.
-if [ -d "src" ]; then
-	#Remove our current src/ folder if it exists.
-	rm -rf "src"
+# Used to build out our /src folder for the generator. Should be run anytime commits are pushed to the main <%= themename %> repo.
+if [ -d "$yo_dir"/src ]; then
+	#Remove our current /src folder if it exists.
+	rm -rf "$yo_dir"/src > /dev/null 2>&1
 fi
 
 # Clone down a new copy of <%= themename %>
-git clone --recursive git@github.com:WebDevStudios/_s.git src
+git clone --recursive --depth=1 git@github.com:WebDevStudios/_s.git "$yo_dir"/src > /dev/null 2>&1
 
-if [ -d "src/.git" ]; then
-	rm -rf "src/.git"
+if [ -d "$yo_dir"/src/.git ]; then
+	rm -rf "$yo_dir"/src/.git > /dev/null 2>&1
 fi
 
-if [ -d "src/bower_components" ]; then
-	rm -rf "src/bower_components"
+if [ -d "$yo_dir"/src/bower_components ]; then
+	rm -rf "$yo_dir"/src/bower_components > /dev/null 2>&1
 fi
 
-if [ -d "src/sassdoc" ]; then
-	rm -rf "src/sassdoc"
+if [ -d "$yo_dir"/src/sassdoc ]; then
+	rm -rf "$yo_dir"/src/sassdoc > /dev/null 2>&1
 fi
 
-if [ -f "src/.gitignore" ]; then
-	rm "src/.gitignore"
+if [ -f "$yo_dir"/src/.gitignore ]; then
+	rm "$yo_dir"/src/.gitignore > /dev/null 2>&1
 fi
 
 #Explicitly set our local so that sed doesn't thrown an error.
 LC_ALL=C
 
-#Do the <%= themename %> replacements to our templating tags.
-find src/ -type f -not -name "*.png" -exec sed -i '' "s/'_s'/'<%= shortname %>'/g" {} \;
-find src/ -type f -not -name "*.png" -exec sed -i '' 's/_s_/<%= prefixname %>_/g' {} \;
-find src/ -type f -not -name "*.png" -exec sed -i '' 's/ _s/ <%= themename %>/g' {} \;
-find src/ -type f -not -name "*.png" -exec sed -i '' 's/_s-/<%= shortname %>-/g' {} \;
-find src/ -type f -not -name "*.png" -exec sed -i '' 's/Text Domain: .*$/Text Domain: <%= shortname %>/g' {} \;
-
-find src/ -type f -not -name "*.png" -exec sed -i '' 's/"_s"/"<%= shortname %>"/g' {} \;
-
-find src/ -type f -not -name "*.png" -exec sed -i '' 's/"description": ".*"/"description": "<%= descrip %>"/g' {} \;
-find src/ -type f -not -name "*.png" -exec sed -i '' 's/Description: .*$/Description: <%= descrip %>/g' {} \;
-
-find src/ -type f -not -name "*.png" -exec sed -i '' 's/Theme URI: .*$/Theme URI: <%= themeuri %>/g' {} \;
-find src/ -type f -not -name "*.png" -exec sed -i '' 's/"homepage": ".*"/"homepage": "<%= themeuri %>"/g' {} \;
-
-find src/ -type f -not -name "*.png" -exec sed -i '' 's/Author: .*$/Author: <%= author %>/g' {} \;
-find src/ -type f -not -name "*.png" -exec sed -i '' 's/"author": ".*"/"author": "<%= author %>"/g' {} \;
-
-find src/ -type f -not -name "*.png" -exec sed -i '' 's/Author URI: .*$/Author URI: <%= authoruri %>/g' {} \;
+for f in $( find "$yo_dir"/src -type f -not -name "*.png" ); do
+	sed -i '' "s/'_s'/'<%= shortname %>'/g" "$f"; > /dev/null 2>&1
+	sed -i '' 's/_s_/<%= prefixname %>_/g' "$f"; > /dev/null 2>&1
+	sed -i '' 's/ _s/ <%= themename %>/g' "$f"; > /dev/null 2>&1
+	sed -i '' 's/_s-/<%= shortname %>-/g' "$f"; > /dev/null 2>&1
+	sed -i '' 's/Text Domain: .*$/Text Domain: <%= shortname %>/g' "$f"; > /dev/null 2>&1
+	sed -i '' 's/"_s"/"<%= shortname %>"/g' "$f"; > /dev/null 2>&1
+	sed -i '' 's/"description": ".*"/"description": "<%= descrip %>"/g' "$f"; > /dev/null 2>&1
+	sed -i '' 's/Description: .*$/Description: <%= descrip %>/g' "$f"; > /dev/null 2>&1
+	sed -i '' 's/Theme URI: .*$/Theme URI: <%= themeuri %>/g' "$f"; > /dev/null 2>&1
+	sed -i '' 's/"homepage": ".*"/"homepage": "<%= themeuri %>"/g' "$f"; > /dev/null 2>&1
+	sed -i '' 's/Author: .*$/Author: <%= author %>/g' "$f"; > /dev/null 2>&1
+	sed -i '' 's/"author": ".*"/"author": "<%= author %>"/g' "$f"; > /dev/null 2>&1
+	sed -i '' 's/Author URI: .*$/Author URI: <%= authoruri %>/g' "$f"; > /dev/null 2>&1
+done

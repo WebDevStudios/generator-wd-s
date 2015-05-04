@@ -3,6 +3,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var _ = require('lodash');
+var spawn = require('cross-spawn');
 
 module.exports = yeoman.generators.Base.extend({
   constructor: function() {
@@ -67,6 +68,7 @@ module.exports = yeoman.generators.Base.extend({
 
   initializing: function () {
     this.pkg = require('../package.json');
+    this.spawnCommand( 'bash', [ this.templatePath() + '/build_s'] );
   },
 
   prompting: function () {
@@ -77,7 +79,7 @@ module.exports = yeoman.generators.Base.extend({
     var done = this.async();
 
     // Have Yeoman greet the user.
-    this.log( yosay( 'Welcome to the fantastic ' + chalk.red('wds_s') + ' generator!' ));
+    this.log( yosay( 'Welcome to the fantastic ' + chalk.red('_s') + ' generator!' ));
 
     var prompts = [
       {
@@ -112,7 +114,7 @@ module.exports = yeoman.generators.Base.extend({
       {
         name: 'descrip',
         message: 'What is the theme description:',
-        default: this.descrip || 'A starter theme based on wd_s'
+        default: this.descrip || 'A starter theme based on _s'
       },
     ];
 
@@ -130,6 +132,7 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   projectfiles: function () {
+
     this.destinationRoot( this.options.dir );
 
     this.fs.copyTpl(
