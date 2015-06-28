@@ -1,6 +1,6 @@
 # generator-wd_s
 
-> [Yeoman](http://yeoman.io) generator for [_s](https://github.com/WebDevStudios/_s)
+> [Yeoman](http://yeoman.io) generator for [wd_s](https://github.com/WebDevStudios/wd_s)
 
 
 ## Getting Started
